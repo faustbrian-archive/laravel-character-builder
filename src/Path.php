@@ -8,7 +8,7 @@ class Path
 {
     public static function parts(string $child): string
     {
-        $path = config('laravel-character-builder.paths.parts');
+        $path = config('character-builder.paths.parts');
 
         if ($child) {
             return $path.DIRECTORY_SEPARATOR.$child;
@@ -19,7 +19,7 @@ class Path
 
     public static function characters(string $child): string
     {
-        $path = config('laravel-character-builder.paths.characters');
+        $path = config('character-builder.paths.characters');
 
         if ($child) {
             return $path.DIRECTORY_SEPARATOR.$child;

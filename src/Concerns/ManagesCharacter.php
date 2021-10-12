@@ -15,7 +15,7 @@ trait ManagesCharacter
     {
         $image = Image::canvas($this->config['width'], $this->config['height']);
 
-        foreach (config('laravel-character-builder.parts') as $part) {
+        foreach (config('character-builder.parts') as $part) {
             $image->insert(File::get(Arr::random(File::files(Path::parts($part)))->getPathname()));
         }
 
