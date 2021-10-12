@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Faust\CharacterBuilder;
 
 use ColorThief\ColorThief;
+use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 
 class Avatar
@@ -25,11 +26,13 @@ class Avatar
         $this->identifier = $identifier;
 
         $this->files = [
-            'avatar'     => Path::characters("{$identifier}"),
-            'qrcode'     => Path::characters("{$identifier}/qr"),
-            'background' => Path::characters("{$identifier}/background"),
-            'temporary'  => Path::characters("{$identifier}/temp"),
+            'avatar'     => Path::characters("{$identifier}.png"),
+            'qrcode'     => Path::characters("{$identifier}/qr.png"),
+            'background' => Path::characters("{$identifier}/background.png"),
+            'temporary'  => Path::characters("{$identifier}/temp.png"),
         ];
+
+        File::ensureDirectoryExists(Path::characters("{$identifier}"), 0777);;
     }
 
     public function create(): \Intervention\Image\Image
