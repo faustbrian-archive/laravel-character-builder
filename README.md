@@ -15,7 +15,15 @@ composer require faustbrian/laravel-character-builder
 
 ## Usage
 
-TBD
+```php
+<?php
+
+use Faust\CharacterBuilder\Avatar;
+
+$avatar = new Avatar("John Doe");
+$avatar->withDominantColorBackground();
+$avatar->create()->encode('data-url', 100);
+```
 
 ## Testing
 
