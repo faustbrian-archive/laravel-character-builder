@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Faust\CharacterBuilder;
 
 use ColorThief\ColorThief;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 
@@ -32,7 +33,7 @@ class Avatar
             'temporary'  => Path::characters("{$identifier}/temp.png"),
         ];
 
-        File::ensureDirectoryExists(Path::characters("{$identifier}"), 0777);;
+        File::ensureDirectoryExists(Path::characters("{$identifier}"), 0777);
     }
 
     public function create(): \Intervention\Image\Image
@@ -53,7 +54,7 @@ class Avatar
         }
 
         if ($this->config['background'] === 'random_color') {
-            $backgroundImage = Image::canvas($this->config['width'], $this->config['height'], $this->config['colors'])
+            $backgroundImage = Image::canvas($this->config['width'], $this->config['height'], Arr::random($this->config['colors']))
                 ->save(Path::characters("{$this->identifier}/background.png"));
         }
 
